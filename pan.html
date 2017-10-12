@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/pan.js"></script>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body{
+            margin: 0;
+        }
+        .box{
+            width: 400%;
+            height: 200px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            transition: all .5s;
+        }
+        .box li{
+            width: 25%;
+            height: 100%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<ul class="box" id="box">
+    <li style="background:red">lee1</li>
+    <li style="background:yellow">lee2</li>
+    <li style="background:green">lee3</li>
+    <li style="background:skyblue">lee4</li>
+</ul>
+
+<script>
+    var box = document.getElementById('box');
+    var hins = new Hammer(box);
+    var i = 0;
+    var flag = true;
+    hins.on('panleft',function () {
+        if (flag){
+            i++;
+            box.style.webkitTransform = 'translate3d(-'+i*25+'%,0,0)';
+            console.log(i);
+            flag = false;
+
+        }
+        if (i >= 3){
+            i = 2;
+        }
+    })
+    box.addEventListener('touchend',function () {
+        flag = true;
+    })
+    hins.on('panright',function () {
+        if (flag){
+            i--;
+            console.log(i);
+            flag = false;
+            box.style.webkitTransform = 'translate3d(-'+i*25+'%,0,0)';
+
+        }
+        if (i <= 0){
+            i = 1;
+        }
+    })
+</script>
+</body>
+</html>
