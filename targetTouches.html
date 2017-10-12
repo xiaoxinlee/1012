@@ -10,6 +10,7 @@
             width: 90%;
             height: 200px;
             background: red;
+            /*opacity: 0.5;*/
             position: absolute;
         }
     </style>
@@ -20,8 +21,8 @@
 <script>
     var box = document.getElementById('box');
     box.addEventListener('touchmove',function (ev) {
-        ev.preventDefault();
-        this.style.display = 'none';
+//        ev.preventDefault();
+//        this.style.display = 'none';
         this.innerHTML = ev.targetTouches.length;
     })
 </script>
