@@ -32,27 +32,26 @@
 </head>
 <body>
 <ul class="box" id="box">
-    <li style="background:red">lee1</li>
-    <li style="background:yellow">lee2</li>
-    <li style="background:green">lee3</li>
-    <li style="background:skyblue">lee4</li>
+    <li style="background:red">第一张 请往左滑</li>
+    <li style="background:yellow">第二张</li>
+    <li style="background:green">第三张</li>
+    <li style="background:skyblue">最后一张 请往右滑</li>
 </ul>
 
 <script>
     var box = document.getElementById('box');
+    var lis = document.getElementsByTagName('li');
     var hins = new Hammer(box);
     var i = 0;
     var flag = true;
     hins.on('panleft',function () {
         if (flag){
             i++;
+            i == lis.length && (i = lis.length-1);
             box.style.webkitTransform = 'translate3d(-'+i*25+'%,0,0)';
             console.log(i);
             flag = false;
 
-        }
-        if (i >= 3){
-            i = 2;
         }
     })
     box.addEventListener('touchend',function () {
@@ -61,14 +60,12 @@
     hins.on('panright',function () {
         if (flag){
             i--;
+            if (i < 0) i=0;
             console.log(i);
             flag = false;
             box.style.webkitTransform = 'translate3d(-'+i*25+'%,0,0)';
+        }
 
-        }
-        if (i <= 0){
-            i = 1;
-        }
     })
 </script>
 </body>

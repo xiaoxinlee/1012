@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/pan.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background: red;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">放大再缩小</div>
+
+<script>
+    var box = document.getElementById('box');
+    var hins = new Hammer(box);
+    hammertime.get('pinch').set({ enable: true });
+    var sc =1;
+    hins.on('pinchin',function () {
+        sc -= 0.03;
+        if (sc < 0.1) sc=0.1;
+        box.style.webkitTransform = 'scale('+sc+')'
+    })
+    hins.on('pinchin',function () {
+        sc -= 0.03;
+        if (sc > 3) sc=3;
+        box.style.webkitTransform = 'scale('+sc+')'
+    })
+</script>
+</body>
+</html>
