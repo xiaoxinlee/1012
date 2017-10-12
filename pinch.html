@@ -22,16 +22,16 @@
 <script>
     var box = document.getElementById('box');
     var hins = new Hammer(box);
-    hammertime.get('pinch').set({ enable: true });
+    hins.get('pinch').set({ enable: true });
     var sc =1;
     hins.on('pinchin',function () {
         sc -= 0.03;
-        if (sc < 0.1) sc=0.1;
+        if (sc < 0.1)  sc=0.1;
         box.style.webkitTransform = 'scale('+sc+')'
     })
     hins.on('pinchin',function () {
         sc -= 0.03;
-        if (sc > 3) sc=3;
+        if (sc > 3)  sc=3;
         box.style.webkitTransform = 'scale('+sc+')'
     })
 </script>
